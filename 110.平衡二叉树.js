@@ -65,7 +65,49 @@
  * @return {boolean}
  */
 var isBalanced = function(root) {
+  // if (!root) return true
 
+  // let field = []
+  // let min = null
+
+  // field.push([root])
+
+  // for (let i = 0; i < field.length; i++) {
+  //   let current_array = []
+
+  //   for (let j = 0; j < field[i].length; j++) {
+  //     if (field[i][j].left) {
+  //       current_array.push(field[i][j].left)
+  //     } else if (min === null) {
+  //       min = i
+  //     }
+  //     if (field[i][j].right) {
+  //       current_array.push(field[i][j].right)
+  //     } else if (min === null) {
+  //       min = i
+  //     }
+  //   }
+
+  //   if (current_array.length) {
+  //     field.push(current_array)
+  //   }
+  // }
+  
+  // return field.length - min <= 2
+
+  if (!root) return true
+
+  if (Math.abs(height(root.left) - height(root.right)) > 1) {
+    return false
+  }
+
+  return isBalanced(root.left) && isBalanced(root.right)
 };
+
+function height(node) {
+  if (!node) return 0
+
+  return Math.max(height(node.left), height(node.right)) + 1
+}
 // @lc code=end
 
