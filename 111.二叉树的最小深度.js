@@ -46,7 +46,22 @@
  * @return {number}
  */
 var minDepth = function(root) {
-
+  if (!root) return 0
+  
+  // 当左右子树都为空时，说明此时这个节点就是叶子结点，直接层数加一返回就完事了。
+  if (!root.left && !root.right) return 1
+  // 当左子树为空时，这时就不能再让它递归来影响层数的计算了，都走到这一步了那它肯定有
+  // 右子树，就直接在递归它的右子树，同理处理右子树为空的情况。
+  if (!root.left) return min_dep(root.right)
+  if (!root.right) return min_dep(root.left)
+  
+  return Math.min(min_dep(root.left), min_dep(root.right))
 };
+
+const min_dep = node => {
+  if (!node) return 0
+
+  return 1 + minDepth(node)
+}
 // @lc code=end
 
