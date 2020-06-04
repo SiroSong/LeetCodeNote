@@ -44,7 +44,22 @@
  * @return {number}
  */
 var maxProfit = function(prices) {
-  
+  const len = prices.length
+  let minIndex = 0, maxGet = 0
+
+  for (let i = 1; i < len; i++) {
+    let tempGet = prices[i] - prices[minIndex]
+
+    if (tempGet > maxGet) {
+      maxGet = tempGet
+    }
+
+    if (tempGet < 0) {
+      minIndex = i
+    }
+  }
+
+  return maxGet
 };
 // @lc code=end
 
